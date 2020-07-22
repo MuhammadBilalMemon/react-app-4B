@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './Components/NavBar';
 import Header from './Components/Header';
+import ContentUX from './Components/ContentUX';
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <>
       <NavBar />
       <Header />
+      <ContentUX />
     </>
   );
 }
