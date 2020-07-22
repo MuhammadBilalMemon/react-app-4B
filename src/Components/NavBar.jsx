@@ -119,7 +119,7 @@ const NavBar = () => {
   );
   return (
     <div>
-      <AppBar position="static" className={classes.root}>
+      <AppBar component="nav" position="fixed" className={classes.root}>
         <Toolbar variant="dense">
           <IconButton
             onClick={toggleSlider("left", true)}
