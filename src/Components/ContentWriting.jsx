@@ -4,6 +4,8 @@ import { makeStyles, Box, Typography, Grid, Paper } from "@material-ui/core";
 
 import contentWritingImage from "../Images/contentWriting.svg";
 
+import useWebAnimations, { tada } from "@wellyshen/use-web-animations";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -39,6 +41,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ContentWriting = () => {
   const classes = useStyles();
+
+  const { keyframes, timing } = tada;
+  const contentWriting = useWebAnimations({
+    keyframes,
+    timing: {
+      ...timing,
+      delay: 500,
+      duration: 5000,
+      iterations: Infinity,
+      easing: "ease-in-out",
+    },
+  });
+
   return (
     <Box component="div" className={classes.root}>
       <Grid container>
@@ -56,7 +71,11 @@ const ContentWriting = () => {
         </Grid>
         <Grid item md>
           <Paper className={classes.paper} style={{ marginTop: "110px" }}>
-            <img src={contentWritingImage} alt="Content Writing" />
+            <img
+              src={contentWritingImage}
+              ref={contentWriting.ref}
+              alt="Content Writing"
+            />
           </Paper>
         </Grid>
       </Grid>

@@ -4,6 +4,8 @@ import { makeStyles, Box, Typography, Grid, Paper } from "@material-ui/core";
 
 import contentUXImage from "../Images/contentCopyWrite.svg";
 
+import useWebAnimations, { heartBeat } from "@wellyshen/use-web-animations";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -39,12 +41,29 @@ const useStyles = makeStyles((theme) => ({
 
 const ContextCopyWrite = () => {
   const classes = useStyles();
+
+  const { keyframes, timing } = heartBeat;
+  const contentCopyWriting = useWebAnimations({
+    keyframes,
+    timing: {
+      ...timing,
+      delay: 500,
+      duration: 5000,
+      iterations: Infinity,
+      easing: "ease-in-out",
+    },
+  });
+
   return (
     <Box component="div" className={classes.root}>
       <Grid container>
         <Grid item md>
           <Paper className={classes.paper} style={{ marginTop: "150px" }}>
-            <img src={contentUXImage} alt="contentUX" />
+            <img
+              src={contentUXImage}
+              ref={contentCopyWriting.ref}
+              alt="contentUX"
+            />
           </Paper>
         </Grid>
         <Grid item md>

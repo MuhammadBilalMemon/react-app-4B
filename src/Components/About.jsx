@@ -1,8 +1,10 @@
 import React from "react";
 
-import { makeStyles, Box, Typography, Grid, Paper } from "@material-ui/core";
+import { makeStyles, Box, Typography } from "@material-ui/core";
 
 import ProfileImage from "../Images/profile_pic.svg";
+
+import useWebAnimations, { fadeIn } from "@wellyshen/use-web-animations";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +56,18 @@ const useStyles = makeStyles((theme) => ({
 const About = () => {
   const classes = useStyles();
 
+  const { keyframes, timing } = fadeIn;
+  const about = useWebAnimations({
+    keyframes,
+    timing: {
+      ...timing,
+      delay: 200,
+      duration: 6000,
+      iterations: Infinity,
+      easing: "ease-in-out",
+    },
+  });
+
   return (
     <Box component="div" className={classes.root}>
       <Box component="div" classname={classes.avatarColumn}>
@@ -61,6 +75,7 @@ const About = () => {
           <img
             src={ProfileImage}
             alt="profile"
+            ref={about.ref}
             style={{ height: "250px", width: "250px" }}
           />
           <Typography component="p">

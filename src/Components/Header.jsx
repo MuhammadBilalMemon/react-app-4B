@@ -5,6 +5,8 @@ import { Typography, makeStyles, withStyles, Box } from "@material-ui/core";
 import flashImage from "../Images/Intro_Featured_Image_Empty.svg";
 import brainImage from "../Images/Brain.svg";
 
+import useWebAnimations from "@wellyshen/use-web-animations";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -18,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
   flash: {
     marginTop: "-28rem",
   },
-
   rightSide: {
     margin: "120px",
     width: "60%",
@@ -52,10 +53,22 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
 
+  const header = useWebAnimations({
+    keyframes: {
+      transform: "translateY(40px)",
+    },
+    timing: {
+      duration: 1500, // Run for 1000ms
+      iterations: Infinity, // Repeat once
+      direction: "alternate", // Run the animation forwards and then backwards
+      easing: "ease-in-out", // Use a fancy timing function
+    },
+  });
+
   return (
     <Box component="section" className={classes.root}>
       <Box component="div">
-        <img src={brainImage} alt="brain" height="500px" />
+        <img src={brainImage} ref={header.ref} alt="brain" height="500px" />
         <img
           src={flashImage}
           alt="flash"
